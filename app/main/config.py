@@ -25,10 +25,12 @@ class ProductionConfig(Config):
     DEBUG = False
     #SQLALCHEMY_DATABASE_URI = postgres_local_base
 
-config_by_name = dict(
+def config_by_name(config_name):
+    config_dict = dict(
     dev=DevelopmentConfig,
     test=TestingConfig,
     prod=ProductionConfig
-)
+    )
+    return config_dict.get(config_name,DevelopmentConfig)
 
 key = Config.SECRET_KEY
